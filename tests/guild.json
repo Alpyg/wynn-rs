@@ -1,0 +1,372 @@
+{
+  "uuid": "adb5f0b5-5289-439c-9293-a29d220e7152",
+  "name": "Spectral Cabbage",
+  "prefix": "SPC",
+  "level": 70,
+  "xpPercent": 23,
+  "territories": 0,
+  "wars": 197,
+  "raids": 0,
+  "created": "2016-12-12T19:58:37.021000Z",
+  "members": {
+    "total": 5,
+    "owner": {
+      "Nepmia": {
+        "online": false,
+        "lastJoin": "2026-03-19T23:45:48.667000Z",
+        "server": null,
+        "contributed": 64700439,
+        "contributionRank": 10,
+        "joined": "2020-11-20T19:44:37.126000Z",
+        "weekly": {
+          "completed": true,
+          "streak": 3
+        },
+        "globalData": {
+          "contentCompletion": 1860,
+          "wars": 6,
+          "totalLevel": 3278,
+          "mobsKilled": 470208,
+          "chestsFound": 3033,
+          "dungeons": {
+            "total": 2,
+            "list": {
+              "Decrepit Sewers": 1,
+              "Corrupted Decrepit Sewers": 1
+            }
+          },
+          "raids": {
+            "total": 1,
+            "list": {
+              "Nest of the Grootslangs": 1
+            }
+          },
+          "worldEvents": 2,
+          "lootruns": 1,
+          "caves": 43,
+          "completedQuests": 313,
+          "pvp": {
+            "kills": 443,
+            "deaths": 666
+          },
+          "currentGuildRaids": {
+            "total": 1,
+            "list": {
+              "Nest of the Grootslangs": 1
+            }
+          },
+          "guildRaids": {
+            "total": 4,
+            "list": {
+              "Nest of the Grootslangs": 3,
+              "The Canyon Colossus": 1
+            }
+          },
+          "playtime": 2485.42
+        },
+        "restrictions": {
+          "online_status": false,
+          "main_access": false,
+          "guild_high_ranked_access": true
+        },
+        "uuid": "98bc2236-ada5-4039-b560-8aaa4cc50384",
+        "username": "Nepmia"
+      }
+    },
+    "chief": {
+      "Nepmia": {
+        "online": false,
+        "lastJoin": "2026-03-19T23:45:48.667000Z",
+        "server": null,
+        "contributed": 64700439,
+        "contributionRank": 10,
+        "joined": "2020-11-20T19:44:37.126000Z",
+        "weekly": {
+          "completed": true,
+          "streak": 3
+        },
+        "globalData": {
+          "contentCompletion": 1860,
+          "wars": 6,
+          "totalLevel": 3278,
+          "mobsKilled": 470208,
+          "chestsFound": 3033,
+          "dungeons": {
+            "total": 2,
+            "list": {
+              "Decrepit Sewers": 1,
+              "Corrupted Decrepit Sewers": 1
+            }
+          },
+          "raids": {
+            "total": 1,
+            "list": {
+              "Nest of the Grootslangs": 1
+            }
+          },
+          "worldEvents": 2,
+          "lootruns": 1,
+          "caves": 43,
+          "completedQuests": 313,
+          "pvp": {
+            "kills": 443,
+            "deaths": 666
+          },
+          "currentGuildRaids": {
+            "total": 1,
+            "list": {
+              "Nest of the Grootslangs": 1
+            }
+          },
+          "guildRaids": {
+            "total": 4,
+            "list": {
+              "Nest of the Grootslangs": 3,
+              "The Canyon Colossus": 1
+            }
+          },
+          "playtime": 2485.42
+        },
+        "restrictions": {
+          "online_status": false,
+          "main_access": false,
+          "guild_high_ranked_access": true
+        },
+        "uuid": "98bc2236-ada5-4039-b560-8aaa4cc50384",
+        "username": "Nepmia"
+      }
+    },
+    "strategist": {
+      "Nepmia": {
+        "online": false,
+        "lastJoin": "2026-03-19T23:45:48.667000Z",
+        "server": null,
+        "contributed": 64700439,
+        "contributionRank": 10,
+        "joined": "2020-11-20T19:44:37.126000Z",
+        "weekly": {
+          "completed": true,
+          "streak": 3
+        },
+        "globalData": {
+          "contentCompletion": 1860,
+          "wars": 6,
+          "totalLevel": 3278,
+          "mobsKilled": 470208,
+          "chestsFound": 3033,
+          "dungeons": {
+            "total": 2,
+            "list": {
+              "Decrepit Sewers": 1,
+              "Corrupted Decrepit Sewers": 1
+            }
+          },
+          "raids": {
+            "total": 1,
+            "list": {
+              "Nest of the Grootslangs": 1
+            }
+          },
+          "worldEvents": 2,
+          "lootruns": 1,
+          "caves": 43,
+          "completedQuests": 313,
+          "pvp": {
+            "kills": 443,
+            "deaths": 666
+          },
+          "currentGuildRaids": {
+            "total": 1,
+            "list": {
+              "Nest of the Grootslangs": 1
+            }
+          },
+          "guildRaids": {
+            "total": 4,
+            "list": {
+              "Nest of the Grootslangs": 3,
+              "The Canyon Colossus": 1
+            }
+          },
+          "playtime": 2485.42
+        },
+        "restrictions": {
+          "online_status": false,
+          "main_access": false,
+          "guild_high_ranked_access": true
+        },
+        "uuid": "98bc2236-ada5-4039-b560-8aaa4cc50384",
+        "username": "Nepmia"
+      }
+    },
+    "recruiter": {
+      "Nepmia": {
+        "online": false,
+        "lastJoin": "2026-03-19T23:45:48.667000Z",
+        "server": null,
+        "contributed": 64700439,
+        "contributionRank": 10,
+        "joined": "2020-11-20T19:44:37.126000Z",
+        "weekly": {
+          "completed": true,
+          "streak": 3
+        },
+        "globalData": {
+          "contentCompletion": 1860,
+          "wars": 6,
+          "totalLevel": 3278,
+          "mobsKilled": 470208,
+          "chestsFound": 3033,
+          "dungeons": {
+            "total": 2,
+            "list": {
+              "Decrepit Sewers": 1,
+              "Corrupted Decrepit Sewers": 1
+            }
+          },
+          "raids": {
+            "total": 1,
+            "list": {
+              "Nest of the Grootslangs": 1
+            }
+          },
+          "worldEvents": 2,
+          "lootruns": 1,
+          "caves": 43,
+          "completedQuests": 313,
+          "pvp": {
+            "kills": 443,
+            "deaths": 666
+          },
+          "currentGuildRaids": {
+            "total": 1,
+            "list": {
+              "Nest of the Grootslangs": 1
+            }
+          },
+          "guildRaids": {
+            "total": 4,
+            "list": {
+              "Nest of the Grootslangs": 3,
+              "The Canyon Colossus": 1
+            }
+          },
+          "playtime": 2485.42
+        },
+        "restrictions": {
+          "online_status": false,
+          "main_access": false,
+          "guild_high_ranked_access": true
+        },
+        "uuid": "98bc2236-ada5-4039-b560-8aaa4cc50384",
+        "username": "Nepmia"
+      }
+    },
+    "recruit": {
+      "Nepmia": {
+        "online": false,
+        "lastJoin": "2026-03-19T23:45:48.667000Z",
+        "server": null,
+        "contributed": 64700439,
+        "contributionRank": 10,
+        "joined": "2020-11-20T19:44:37.126000Z",
+        "weekly": {
+          "completed": true,
+          "streak": 3
+        },
+        "globalData": {
+          "contentCompletion": 1860,
+          "wars": 6,
+          "totalLevel": 3278,
+          "mobsKilled": 470208,
+          "chestsFound": 3033,
+          "dungeons": {
+            "total": 2,
+            "list": {
+              "Decrepit Sewers": 1,
+              "Corrupted Decrepit Sewers": 1
+            }
+          },
+          "raids": {
+            "total": 1,
+            "list": {
+              "Nest of the Grootslangs": 1
+            }
+          },
+          "worldEvents": 2,
+          "lootruns": 1,
+          "caves": 43,
+          "completedQuests": 313,
+          "pvp": {
+            "kills": 443,
+            "deaths": 666
+          },
+          "currentGuildRaids": {
+            "total": 1,
+            "list": {
+              "Nest of the Grootslangs": 1
+            }
+          },
+          "guildRaids": {
+            "total": 4,
+            "list": {
+              "Nest of the Grootslangs": 3,
+              "The Canyon Colossus": 1
+            }
+          },
+          "playtime": 2485.42
+        },
+        "restrictions": {
+          "online_status": false,
+          "main_access": false,
+          "guild_high_ranked_access": true
+        },
+        "uuid": "98bc2236-ada5-4039-b560-8aaa4cc50384",
+        "username": "Nepmia"
+      }
+    }
+  },
+  "online": 0,
+  "banner": {
+    "base": "BLUE",
+    "tier": 5,
+    "structure": "tier5",
+    "layers": [
+      {
+        "color": "WHITE",
+        "pattern": "BRICKS"
+      },
+      {
+        "color": "MAGENTA",
+        "pattern": "GRADIENT"
+      },
+      {
+        "color": "LIGHT_BLUE",
+        "pattern": "GRADIENT_UP"
+      },
+      {
+        "color": "GREEN",
+        "pattern": "FLOWER"
+      },
+      {
+        "color": "LIME",
+        "pattern": "CIRCLE_MIDDLE"
+      },
+      {
+        "color": "GREEN",
+        "pattern": "MOJANG"
+      }
+    ]
+  },
+  "seasonRanks": {
+    "1": {
+      "rating": 10018,
+      "finalTerritories": 0
+    },
+    "5": {
+      "rating": 10025,
+      "finalTerritories": 0
+    }
+  },
+  "ranking": {}
+}

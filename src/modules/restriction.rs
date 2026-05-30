@@ -17,4 +17,7 @@ pub struct Restrictions {
     pub online_status: bool,
     #[serde(default)]
     pub guild_history_access: bool,
+    #[serde(default)]
+    #[serde(rename = "guild_high_ranked_access")]
+    pub guild_high_ranked_access: bool,
 }

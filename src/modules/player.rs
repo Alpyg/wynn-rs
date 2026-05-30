@@ -26,7 +26,7 @@ pub struct PlayerProfile {
     pub support_rank: Option<SupportRank>,
     pub veteran: bool,
     pub last_join: DateTime<Utc>,
-    pub guild: Option<Guild>,
+    pub guild: Option<PlayerGuild>,
     pub first_join: DateTime<Utc>,
     pub playtime: f64,
     pub global_data: GlobalData,
@@ -34,6 +34,15 @@ pub struct PlayerProfile {
     pub avatar: String,
     pub characters: Option<Characters>,
     pub restrictions: Restrictions,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct PlayerGuild {
+    pub uuid: Uuid,
+    pub name: String,
+    pub prefix: String,
+    pub rank: Option<String>,
+    pub rank_stars: Option<String>,
 }
 
 #[derive(Debug, Deserialize)]

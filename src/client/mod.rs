@@ -195,4 +195,12 @@ impl WynncraftClient {
         )
         .await
     }
+
+    pub async fn guild_by_prefix(
+        &self,
+        prefix: &str,
+    ) -> Result<CharacterSummaries, WynncraftError> {
+        self.get(Bucket::Guild, &format!("guild/prefix/{prefix}"))
+            .await
+    }
 }
