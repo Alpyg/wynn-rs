@@ -1,0 +1,11 @@
+[package]
+name = "wynn-rs"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+chrono = { version = "0.4.44", features = ["serde"] }
+derive_more = { version = "2.1.1", features = ["deref"] }
+serde = { version = "1.0.228", features = ["derive"] }
+serde_json = { version = "1.0.150" }
+uuid = { version = "1.23.2", features = ["serde", "v4"] }
