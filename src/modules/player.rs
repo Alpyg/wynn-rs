@@ -48,20 +48,20 @@ pub struct PlayerGuild {
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct GlobalData {
-    pub content_completion: u32,
-    pub wars: u32,
-    pub total_level: u32,
-    pub mobs_killed: u32,
-    pub chests_found: u32,
-    pub dungeons: DungeonRaidList<DungeonName>,
-    pub raids: DungeonRaidList<RaidName>,
-    pub world_events: u32,
-    pub lootruns: u32,
-    pub caves: u32,
-    pub completed_quests: u32,
+    pub content_completion: Option<u32>,
+    pub wars: Option<u32>,
+    pub total_level: Option<u32>,
+    pub mobs_killed: Option<u32>,
+    pub chests_found: Option<u32>,
+    pub dungeons: Option<DungeonRaidList<DungeonName>>,
+    pub raids: Option<DungeonRaidList<RaidName>>,
+    pub world_events: Option<u32>,
+    pub lootruns: Option<u32>,
+    pub caves: Option<u32>,
+    pub completed_quests: Option<u32>,
     pub guild_raids: Option<DungeonRaidList<RaidName>>,
     pub raid_stats: Option<RaidStats>,
-    pub pvp: PvP,
+    pub pvp: Option<PvP>,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -74,7 +74,7 @@ where
     pub list: HashMap<K, u32>,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub enum DungeonName {
     // Standard
     DecrepitSewers,
@@ -142,6 +142,47 @@ impl FromStr for DungeonName {
             "Jungle" => Self::LegacyJungle,
             other => Self::Unknown(other.to_string()),
         })
+    }
+}
+
+impl std::fmt::Display for DungeonName {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let s = match self {
+            Self::DecrepitSewers => "Decrepit Sewers",
+            Self::InfestedPit => "Infested Pit",
+            Self::UnderworldCrypt => "Underworld Crypt",
+            Self::TimelostSanctum => "Timelost Sanctum",
+            Self::SandSweptTomb => "Sand-Swept Tomb",
+            Self::IceBarrows => "Ice Barrows",
+            Self::UndergrowthRuins => "Undergrowth Ruins",
+            Self::GalleonsGraveyard => "Galleon's Graveyard",
+            Self::FallenFactory => "Fallen Factory",
+            Self::EldritchOutlook => "Eldritch Outlook",
+            Self::CorruptedDecrepitSewers => "Corrupted Decrepit Sewers",
+            Self::CorruptedInfestedPit => "Corrupted Infested Pit",
+            Self::CorruptedLostSanctuary => "Corrupted Lost Sanctuary",
+            Self::CorruptedUnderworldCrypt => "Corrupted Underworld Crypt",
+            Self::CorruptedSandSweptTomb => "Corrupted Sand-Swept Tomb",
+            Self::CorruptedIceBarrows => "Corrupted Ice Barrows",
+            Self::CorruptedUndergrowthRuins => "Corrupted Undergrowth Ruins",
+            Self::CorruptedGalleonsGraveyard => "Corrupted Galleon's Graveyard",
+            Self::LegacySkeleton => "Skeleton",
+            Self::LegacySpider => "Spider",
+            Self::LegacyAnimal => "Animal",
+            Self::LegacyZombie => "Zombie",
+            Self::LegacySilverfish => "Silverfish",
+            Self::LegacyIce => "Ice",
+            Self::LegacyOcean => "Ocean",
+            Self::LegacyJungle => "Jungle",
+            Self::Unknown(s) => s,
+        };
+        f.write_str(s)
+    }
+}
+
+impl serde::Serialize for DungeonName {
+    fn serialize<S: serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        s.serialize_str(&self.to_string())
     }
 }
 
@@ -289,13 +330,23 @@ mod tests {
         assert_eq!(guild.prefix, "SPC");
 
         let global = &profile.global_data;
-        assert_eq!(global.dungeons.total, 2);
+        assert_eq!(global.dungeons.as_ref().unwrap().total, 2);
         assert_eq!(
-            global.dungeons.list.get(&DungeonName::DecrepitSewers),
+            global
+                .dungeons
+                .as_ref()
+                .unwrap()
+                .list
+                .get(&DungeonName::DecrepitSewers),
             Some(&1)
         );
         assert_eq!(
-            global.raids.list.get(&RaidName::NestOfTheGrootslangs),
+            global
+                .raids
+                .as_ref()
+                .unwrap()
+                .list
+                .get(&RaidName::NestOfTheGrootslangs),
             Some(&1)
         );
 

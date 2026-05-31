@@ -36,6 +36,8 @@ pub struct Members {
     #[serde(default)]
     pub strategist: HashMap<String, Member>,
     #[serde(default)]
+    pub captain: HashMap<String, Member>,
+    #[serde(default)]
     pub recruiter: HashMap<String, Member>,
     #[serde(default)]
     pub recruit: HashMap<String, Member>,
@@ -48,6 +50,7 @@ impl Members {
             (GuildRank::Owner, &self.owner),
             (GuildRank::Chief, &self.chief),
             (GuildRank::Strategist, &self.strategist),
+            (GuildRank::Captain, &self.captain),
             (GuildRank::Recruiter, &self.recruiter),
             (GuildRank::Recruit, &self.recruit),
         ];
@@ -63,6 +66,7 @@ pub enum GuildRank {
     Owner,
     Chief,
     Strategist,
+    Captain,
     Recruiter,
     Recruit,
 }
@@ -71,10 +75,11 @@ pub enum GuildRank {
 #[serde(rename_all = "camelCase")]
 pub struct Member {
     pub uuid: Uuid,
+    #[serde(alias = "legacyName")]
     pub username: String,
     pub online: bool,
     pub server: Option<String>,
-    pub last_join: DateTime<Utc>,
+    pub last_join: Option<DateTime<Utc>>,
     pub joined: DateTime<Utc>,
     pub contributed: u64,
     pub contribution_rank: u32,
@@ -92,21 +97,21 @@ pub struct WeeklyChallenge {
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct MemberGlobalData {
-    pub content_completion: u32,
-    pub wars: u32,
-    pub total_level: u32,
-    pub mobs_killed: u64,
-    pub chests_found: u32,
-    pub dungeons: DungeonRaidList<DungeonName>,
-    pub raids: DungeonRaidList<RaidName>,
-    pub world_events: u32,
-    pub lootruns: u32,
-    pub caves: u32,
-    pub completed_quests: u32,
-    pub pvp: PvP,
+    pub content_completion: Option<u32>,
+    pub wars: Option<u32>,
+    pub total_level: Option<u32>,
+    pub mobs_killed: Option<u32>,
+    pub chests_found: Option<u32>,
+    pub dungeons: Option<DungeonRaidList<DungeonName>>,
+    pub raids: Option<DungeonRaidList<RaidName>>,
+    pub world_events: Option<u32>,
+    pub lootruns: Option<u32>,
+    pub caves: Option<u32>,
+    pub completed_quests: Option<u32>,
+    pub pvp: Option<PvP>,
     pub current_guild_raids: Option<DungeonRaidList<RaidName>>,
     pub guild_raids: Option<DungeonRaidList<RaidName>>,
-    pub playtime: f64,
+    pub playtime: Option<f64>,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -142,6 +147,7 @@ pub enum BannerColor {
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct BannerLayer {
+    #[serde(rename = "colour")]
     pub color: BannerColor,
     pub pattern: String,
 }
@@ -207,8 +213,8 @@ mod tests {
     fn member_global_data() {
         let guild: Guild = serde_json::from_str(GUILD).unwrap();
         let data = &guild.members.owner.get("Nepmia").unwrap().global_data;
-        assert_eq!(data.wars, 6);
-        assert_eq!(data.playtime, 2485.42);
+        assert_eq!(data.wars.unwrap(), 6);
+        assert_eq!(data.playtime.unwrap(), 2485.42);
         assert_eq!(data.guild_raids.as_ref().unwrap().total, 4);
     }
 }

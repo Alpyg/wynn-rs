@@ -71,8 +71,8 @@ impl WynncraftClientBuilder {
     pub fn build(self) -> Result<WynncraftClient, reqwest::Error> {
         let mut headers = header::HeaderMap::new();
         if let Some(token) = self.token {
-            let mut value =
-                header::HeaderValue::from_str(&token).expect("invalid token header value");
+            let mut value = header::HeaderValue::from_str(&format!("Bearer {}", &token))
+                .expect("invalid token header value");
             value.set_sensitive(true);
             headers.insert(header::AUTHORIZATION, value);
         }
