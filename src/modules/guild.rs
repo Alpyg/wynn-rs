@@ -1,12 +1,12 @@
 use std::collections::HashMap;
 
 use chrono::{DateTime, Utc};
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
 use crate::prelude::*;
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Guild {
     pub uuid: Uuid,
@@ -25,7 +25,7 @@ pub struct Guild {
     pub ranking: HashMap<String, serde_json::Value>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Members {
     pub total: u32,
@@ -67,7 +67,7 @@ pub enum GuildRank {
     Recruit,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Member {
     pub uuid: Uuid,
@@ -83,13 +83,13 @@ pub struct Member {
     pub restrictions: Restrictions,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct WeeklyChallenge {
     pub completed: bool,
     pub streak: u32,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct MemberGlobalData {
     pub content_completion: u32,
@@ -109,7 +109,7 @@ pub struct MemberGlobalData {
     pub playtime: f64,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Banner {
     pub base: BannerColor,
@@ -118,7 +118,7 @@ pub struct Banner {
     pub layers: Vec<BannerLayer>,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum BannerColor {
     Black,
@@ -139,14 +139,14 @@ pub enum BannerColor {
     White,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct BannerLayer {
     pub color: BannerColor,
     pub pattern: String,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct SeasonRank {
     pub rating: u32,

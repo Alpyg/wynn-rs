@@ -1,12 +1,12 @@
 use std::collections::HashMap;
 
 use derive_more::Deref;
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
 use crate::prelude::*;
 
-#[derive(Debug, Deref, Deserialize)]
+#[derive(Debug, Deref, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Characters(pub HashMap<Uuid, Character>);
 
@@ -29,7 +29,7 @@ pub struct CharacterSummary {
     pub meta: Option<Meta>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Character {
     #[serde(rename = "type")]
@@ -66,13 +66,13 @@ pub struct Character {
     pub meta: Option<Meta>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Meta {
     /// True if this character has died on Hardcore mode and is now locked.
     pub died: bool,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum Class {
     Archer,
@@ -82,7 +82,7 @@ pub enum Class {
     Warrior,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum Reskin {
     Archer,
@@ -92,7 +92,7 @@ pub enum Reskin {
     Knight,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "lowercase")]
 pub enum Gamemode {
     Ironman,
@@ -102,7 +102,7 @@ pub enum Gamemode {
     Ultimate,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct SkillPoints {
     pub strength: u32,
     pub dexterity: u32,
@@ -111,7 +111,7 @@ pub struct SkillPoints {
     pub agility: u32,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Professions {
     pub fishing: ProfessionLevel,
     pub woodcutting: ProfessionLevel,
@@ -127,7 +127,7 @@ pub struct Professions {
     pub armouring: ProfessionLevel,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ProfessionLevel {
     pub level: u32,

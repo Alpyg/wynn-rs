@@ -33,6 +33,7 @@ pub enum WynncraftError {
     Deserialize(#[from] serde_json::Error),
 }
 
+#[derive(Debug, Clone)]
 pub struct WynncraftClient {
     client: Client,
     base_url: String,

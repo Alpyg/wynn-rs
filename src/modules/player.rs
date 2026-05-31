@@ -3,12 +3,12 @@ use std::fmt;
 use std::str::FromStr;
 
 use chrono::{DateTime, Utc};
-use serde::{Deserialize, Deserializer, de};
+use serde::{Deserialize, Deserializer, Serialize, de};
 use uuid::Uuid;
 
 use crate::prelude::*;
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PlayerProfile {
     pub username: String,
@@ -36,7 +36,7 @@ pub struct PlayerProfile {
     pub restrictions: Restrictions,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct PlayerGuild {
     pub uuid: Uuid,
     pub name: String,
@@ -45,7 +45,7 @@ pub struct PlayerGuild {
     pub rank_stars: Option<String>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct GlobalData {
     pub content_completion: u32,
@@ -64,7 +64,7 @@ pub struct GlobalData {
     pub pvp: PvP,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct DungeonRaidList<K>
 where
     K: DeserializeStringKey,
@@ -74,7 +74,7 @@ where
     pub list: HashMap<K, u32>,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize)]
 pub enum DungeonName {
     // Standard
     DecrepitSewers,
@@ -145,7 +145,7 @@ impl FromStr for DungeonName {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize)]
 pub enum RaidName {
     NestOfTheGrootslangs,
     OrphionsNexusOfLight,
@@ -210,7 +210,7 @@ where
     deserializer.deserialize_map(StringKeyMapVisitor(std::marker::PhantomData))
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct RaidStats {
     pub damage_taken: u64,
@@ -221,21 +221,21 @@ pub struct RaidStats {
     pub gambits_used: u32,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PvP {
     pub kills: u32,
     pub deaths: u32,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct LegacyRankColor {
     pub main: String,
     pub sub: String,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub enum SupportRank {
     Vip,
     VipPlus,
