@@ -4,7 +4,7 @@ use reqwest::{Client, header};
 use serde::Deserialize;
 use uuid::Uuid;
 
-use crate::prelude::*;
+use crate::{modules::guild::Guild, prelude::*};
 
 const BASE_URL: &str = "https://api.wynncraft.com/v3";
 
@@ -126,10 +126,7 @@ impl WynncraftClient {
             .await
     }
 
-    pub async fn guild_by_prefix(
-        &self,
-        prefix: &str,
-    ) -> Result<CharacterSummaries, WynncraftError> {
+    pub async fn guild_by_prefix(&self, prefix: &str) -> Result<Guild, WynncraftError> {
         self.get(&format!("guild/prefix/{prefix}")).await
     }
 }

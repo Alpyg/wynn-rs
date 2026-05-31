@@ -7,6 +7,7 @@ pub mod prelude {
     pub use crate::client::*;
 
     pub use crate::modules::character::*;
+    pub use crate::modules::guild::*;
     pub use crate::modules::player::*;
     pub use crate::modules::restriction::*;
 

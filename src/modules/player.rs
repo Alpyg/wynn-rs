@@ -235,16 +235,6 @@ pub struct LegacyRankColor {
     pub sub: String,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct Guild {
-    pub uuid: Uuid,
-    pub name: String,
-    pub prefix: String,
-    pub rank: String,
-    pub rank_stars: String,
-}
-
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum SupportRank {
     Vip,
