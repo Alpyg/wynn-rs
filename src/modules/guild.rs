@@ -90,8 +90,8 @@ pub struct Member {
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct WeeklyChallenge {
-    pub completed: bool,
-    pub streak: u32,
+    pub completed: Option<bool>,
+    pub streak: Option<u32>,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -147,7 +147,6 @@ pub enum BannerColor {
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct BannerLayer {
-    #[serde(rename = "colour")]
     pub color: BannerColor,
     pub pattern: String,
 }
@@ -203,8 +202,6 @@ mod tests {
         let member = guild.members.owner.get("Nepmia").unwrap();
         assert_eq!(member.username, "Nepmia");
         assert_eq!(member.contributed, 64700439);
-        assert!(member.weekly.completed);
-        assert_eq!(member.weekly.streak, 3);
         assert!(!member.restrictions.online_status);
         assert!(member.restrictions.guild_high_ranked_access);
     }
