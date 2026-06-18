@@ -147,6 +147,7 @@ pub enum BannerColor {
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct BannerLayer {
+    #[serde(alias = "colour")]
     pub color: BannerColor,
     pub pattern: String,
 }
