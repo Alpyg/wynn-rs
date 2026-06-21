@@ -3,3 +3,4 @@ pub mod character;
 pub mod guild;
 pub mod player;
 pub mod restriction;
+pub mod territory;
