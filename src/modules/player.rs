@@ -6,7 +6,7 @@ use chrono::{DateTime, Utc};
 use serde::{Deserialize, Deserializer, Serialize, de};
 use uuid::Uuid;
 
-use crate::prelude::*;
+use crate::*;
 
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -21,13 +21,13 @@ pub struct PlayerProfile {
     pub rank_badge: String,
     #[serde(alias = "legacyRankColour")]
     pub legacy_rank_color: LegacyRankColor,
-    pub shortened_rank: String,
+    pub shortened_rank: Option<String>,
     #[serde(default, deserialize_with = "deserialize_support_rank_opt")]
     pub support_rank: Option<SupportRank>,
-    pub veteran: bool,
-    pub last_join: DateTime<Utc>,
+    pub veteran: Option<bool>,
+    pub last_join: Option<DateTime<Utc>>,
+    pub first_join: Option<DateTime<Utc>>,
     pub guild: Option<PlayerGuild>,
-    pub first_join: DateTime<Utc>,
     pub playtime: f64,
     pub global_data: GlobalData,
     pub wallpaper: String,

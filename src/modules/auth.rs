@@ -3,7 +3,31 @@ use std::collections::HashMap;
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
-use crate::prelude::{LegacyRankColor, SupportRank};
+use crate::{LegacyRankColor, SupportRank};
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct AccessTokenRequest<'a> {
+    pub grant_type: &'a str,
+    pub code: &'a str,
+    pub redirect_uri: &'a str,
+    pub client_id: &'a str,
+    #[serde(flatten)]
+    pub auth: ClientAuth<'a>,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum ClientAuth<'a> {
+    ClientSecret(&'a str),
+    CodeVerifier(&'a str),
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct AccessTokenResponse {
+    pub access_token: String,
+    pub token_type: String,
+    pub scope: String,
+}
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Identity {

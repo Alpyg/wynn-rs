@@ -4,7 +4,7 @@ use derive_more::Deref;
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
-use crate::prelude::*;
+use crate::*;
 
 #[derive(Debug, Deref, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]

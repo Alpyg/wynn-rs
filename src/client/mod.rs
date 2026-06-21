@@ -1,5 +1,5 @@
-use crate::{modules::guild::Guild, prelude::*};
-use reqwest::{Client, header};
+use crate::{modules::guild::Guild, *};
+use reqwest::Client;
 use serde::Deserialize;
 use std::fmt;
 use std::sync::Arc;
@@ -102,23 +102,63 @@ pub struct WynncraftSession {
 }
 
 impl WynncraftSession {
+    async fn handle<T: serde::de::DeserializeOwned>(
+        &self,
+        response: reqwest::Response,
+    ) -> Result<T, WynncraftError> {
+        let status = response.status().as_u16();
+        let bytes = response.bytes().await?;
+        match status {
+            200 => {
+                let de = &mut serde_json::Deserializer::from_slice(&bytes);
+                serde_path_to_error::deserialize(de).map_err(|e| {
+                    tracing::error!(path = %e.path(), error = %e.inner(), "deserialize response");
+                    WynncraftError::Deserialize(e.into_inner())
+                })
+            }
+            429 => Err(WynncraftError::RateLimited),
+            _ => {
+                let de = &mut serde_json::Deserializer::from_slice(&bytes);
+                let api = serde_path_to_error::deserialize::<_, WynncraftApiError>(de)
+                    .map_err(|e| WynncraftError::Deserialize(e.into_inner()))?;
+                Err(WynncraftError::Api(api))
+            }
+        }
+    }
+
     async fn get<T: serde::de::DeserializeOwned>(&self, path: &str) -> Result<T, WynncraftError> {
         let inner = &self.client.inner;
         let mut request = inner.client.get(format!("{}/{}", inner.base_url, path));
-
         if let Some(token) = &self.token {
             request = request.bearer_auth(token);
         }
-
         let response = request.send().await?;
+        self.handle(response).await
+    }
 
-        match response.status().as_u16() {
-            200 => Ok(response.json::<T>().await?),
-            429 => Err(WynncraftError::RateLimited),
-            _ => Err(WynncraftError::Api(
-                response.json::<WynncraftApiError>().await?,
-            )),
+    pub async fn oauth_token<'a>(
+        &self,
+        req: AccessTokenRequest<'a>,
+    ) -> Result<AccessTokenResponse, WynncraftError> {
+        let inner = &self.client.inner;
+        let mut form: Vec<(&str, &str)> = vec![
+            ("grant_type", &req.grant_type),
+            ("code", &req.code),
+            ("redirect_uri", &req.redirect_uri),
+            ("client_id", &req.client_id),
+        ];
+
+        match &req.auth {
+            ClientAuth::ClientSecret(s) => form.push(("client_secret", s)),
+            ClientAuth::CodeVerifier(v) => form.push(("code_verifier", v)),
         }
+        let response = inner
+            .client
+            .post(format!("{}/oauth/token", inner.base_url))
+            .form(&form)
+            .send()
+            .await?;
+        self.handle(response).await
     }
 
     pub async fn player(
