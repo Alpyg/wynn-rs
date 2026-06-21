@@ -19,7 +19,7 @@ pub struct PlayerProfile {
     pub uuid: Uuid,
     pub rank: String,
     pub rank_badge: String,
-    #[serde(rename = "legacyRankColour")]
+    #[serde(alias = "legacyRankColour")]
     pub legacy_rank_color: LegacyRankColor,
     pub shortened_rank: String,
     #[serde(default, deserialize_with = "deserialize_support_rank_opt")]
