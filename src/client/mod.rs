@@ -121,20 +121,28 @@ impl WynncraftSession {
         }
     }
 
-    pub async fn player(&self, username: &str) -> Result<PlayerProfile, WynncraftError> {
-        self.get(&format!("player/{username}")).await
+    pub async fn player(
+        &self,
+        uuid: Uuid,
+        full_result: bool,
+    ) -> Result<PlayerProfile, WynncraftError> {
+        if full_result {
+            self.get(&format!("player/{uuid}?fullResult")).await
+        } else {
+            self.get(&format!("player/{uuid}")).await
+        }
     }
 
-    pub async fn characters(&self, username: &str) -> Result<CharacterSummaries, WynncraftError> {
-        self.get(&format!("player/{username}/characters")).await
+    pub async fn characters(&self, uuid: Uuid) -> Result<CharacterSummaries, WynncraftError> {
+        self.get(&format!("player/{uuid}/characters")).await
     }
 
     pub async fn character(
         &self,
-        username: &str,
+        uuid: Uuid,
         character: Uuid,
     ) -> Result<Character, WynncraftError> {
-        self.get(&format!("player/{username}/characters/{character}"))
+        self.get(&format!("player/{uuid}/characters/{character}"))
             .await
     }
 

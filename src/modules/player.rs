@@ -37,6 +37,7 @@ pub struct PlayerProfile {
 }
 
 #[derive(Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct PlayerGuild {
     pub uuid: Uuid,
     pub name: String,
